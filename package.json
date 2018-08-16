@@ -1,0 +1,31 @@
+{
+  "name": "webserver",
+  "version": "1.0.0",
+  "description": "a simple and tiny static web server based on node.js and jade",
+  "main": "build/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint .",
+    "fix": "eslint --fix ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lzystrike/webServer.git"
+  },
+  "keywords": [
+    "node",
+    "jade",
+    "webserver"
+  ],
+  "author": "lyu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Lzystrike/webServer/issues"
+  },
+  "homepage": "https://github.com/Lzystrike/webServer#readme",
+  "devDependencies": {
+    "babel-eslint": "^8.2.6",
+    "eslint": "^5.3.0",
+    "pre-commit": "^1.2.2"
+  }
+}
