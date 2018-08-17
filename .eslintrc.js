@@ -1,9 +1,10 @@
 module.exports = {
   "env": {
-    "browser": true,
+    "node": true,
     "commonjs": true,
     "es6": true
   },
+  "parser": "babel-eslint",
   "extends": "eslint:recommended",
   "parserOptions": {
     "ecmaVersion": 2015,
@@ -12,7 +13,7 @@ module.exports = {
   "rules": {
     "indent": [
       "error",
-      4
+      2
     ],
     // "linebreak-style": [
     //   "error",
