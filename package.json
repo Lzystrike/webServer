@@ -8,6 +8,10 @@
     "lint": "eslint .",
     "fix": "eslint --fix ."
   },
+  "pre-commit": [
+    "fix",
+    "lint"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Lzystrike/webServer.git"
