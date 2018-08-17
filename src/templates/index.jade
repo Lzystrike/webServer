@@ -1,0 +1,22 @@
+doctype
+html(lang="en")
+  meta(charset='UTF-8')
+  head
+    title= title
+    style.
+      a {
+        display: block;
+        font-size: 20px;
+        color: #6a6352;
+        text-decoration: none;
+        margin: 10px 0;
+      }
+      a:hover {
+        text-decoration: underline;
+        background: #6a6352;
+        color: white;
+      }
+  body
+    each item in fileList
+      a(href=item.link, title=item.name)= item.name
+

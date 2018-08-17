@@ -2,8 +2,14 @@ const fs = require('fs');
 const {promisify} = require('util');
 const stat = promisify(fs.stat);
 const readdir = promisify(fs.readdir);
+const jade = require('jade');
+const path = require('path');
+const tplPath = path.join(__dirname, '../templates/index.jade');
+const conf = require('../config/defaultConfig');
 
 module.exports = async function (res, filePath) {
+  // console.info(`filePath:       ${filePath}`);
+  // console.info(`relative path:  ${path.relative(conf.root, filePath)}`);
   try {
     const stats = await stat(filePath);
     // if request a file
@@ -18,12 +24,19 @@ module.exports = async function (res, filePath) {
       try {
         const files = await readdir(filePath);
         res.statusCode = 200;
-        res.setHeader('Content-Type', 'text/plain');
-        let resTxt = '';
+        res.setHeader('Content-Type', 'text/html');
+        let arr = [];
+        const relativeDir = path.relative(conf.root, filePath);
         files.forEach((item) => {
-          resTxt += item + '\n';
+          arr.push({
+            link: (relativeDir ? `/${relativeDir}` : '') + '/' + item,
+            name: item
+          });
         });
-        res.end(resTxt);
+        res.end(jade.renderFile(tplPath, {
+          fileList: arr,
+          title: path.basename(filePath)
+        }));
       } catch (e) {
         console.error(e);
         res.statusCode = 500;
