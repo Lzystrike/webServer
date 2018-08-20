@@ -5,7 +5,7 @@ html(lang="en")
     title= title
     style.
       a {
-        display: block;
+        /*display: block;*/
         font-size: 20px;
         color: #6a6352;
         text-decoration: none;
@@ -16,7 +16,12 @@ html(lang="en")
         background: #6a6352;
         color: white;
       }
+      img {
+        vertical-align: bottom;
+      }
   body
     each item in fileList
-      a(href=item.link, title=item.name)= item.name
+      p
+        img(src=item.icon)
+        a(href=item.link, title=item.name) #{item.name}
 

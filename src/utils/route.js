@@ -6,16 +6,17 @@ const jade = require('jade');
 const path = require('path');
 const tplPath = path.join(__dirname, '../templates/index.jade');
 const conf = require('../config/defaultConfig');
+const getct = require('../utils/mime');
 
 module.exports = async function (res, filePath) {
   // console.info(`filePath:       ${filePath}`);
-  // console.info(`relative path:  ${path.relative(conf.root, filePath)}`);
   try {
     const stats = await stat(filePath);
     // if request a file
     if (stats.isFile()) {
       res.statusCode = 200;
-      res.setHeader('Content-Type', 'text/plain');
+      let ct = getct(filePath).type;
+      res.setHeader('Content-Type', ct);
       fs.createReadStream(filePath).pipe(res);
       return;
     }
@@ -30,7 +31,8 @@ module.exports = async function (res, filePath) {
         files.forEach((item) => {
           arr.push({
             link: (relativeDir ? `/${relativeDir}` : '') + '/' + item,
-            name: item
+            name: item,
+            icon: '/' + path.relative(conf.root, getct(item).icon || '')
           });
         });
         res.end(jade.renderFile(tplPath, {
