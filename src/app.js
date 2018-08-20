@@ -6,7 +6,7 @@ const getRoute = require('./utils/route');
 
 const server = http.createServer((req, res) => {
   const filePath = path.join(conf.root, req.url);
-  getRoute(res, filePath);
+  getRoute(req, res, filePath);
 });
 
 server.listen(conf.port, conf.hostname, () => {
