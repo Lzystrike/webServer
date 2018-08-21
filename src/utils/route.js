@@ -50,7 +50,8 @@ module.exports = async function (req, res, filePath, conf) {
           arr.push({
             link: (relativeDir ? `/${relativeDir}` : '') + '/' + item,
             name: item,
-            icon: '/' + path.relative(conf.root, getct(item).icon || '')
+            icon: '/' + path.relative(conf.root, getct(item).icon || ''),
+            type: getct(item).type || '?'
           });
         });
         res.end(jade.renderFile(tplPath, {

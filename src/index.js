@@ -24,6 +24,3 @@ const argv = yargs
 
 const webServer = new Server(argv);
 webServer.start();
-
-
-

@@ -1,10 +1,10 @@
 {
   "name": "webserver-noja",
-  "version": "1.0.2",
+  "version": "2.0.1",
   "description": "a simple and tiny static web server based on node.js and jade",
   "main": "src/app.js",
   "bin": {
-    "webServer": "./bin/webServer"
+    "webServer": "bin/webServer"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

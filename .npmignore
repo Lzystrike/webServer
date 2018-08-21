@@ -1,3 +1,5 @@
 .editorconfig
 .eslintignore
 .eslintrc.js
+.idea/
+.git/

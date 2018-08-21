@@ -32,6 +32,6 @@ html(lang="en")
   body
     each item in fileList
       p
-        img(src=item.icon)
-        a(href=item.link, title=item.name) #{item.name}
+        //img(src=item.icon)
+        a(href=item.link, title=item.name) [#{item.type}]#{item.name}
 
