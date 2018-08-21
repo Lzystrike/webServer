@@ -6,8 +6,9 @@ const jade = require('jade');
 const path = require('path');
 const tplPath = path.join(__dirname, '../templates/index.jade');
 const conf = require('../config/defaultConfig');
-const getct = require('../utils/mime');
-const compress = require('../utils/compress');
+const getct = require('./mime');
+const compress = require('./compress');
+const getRange = require('./range');
 
 module.exports = async function (req, res, filePath) {
   // console.info(`filePath:       ${filePath}`);
@@ -15,11 +16,18 @@ module.exports = async function (req, res, filePath) {
     const stats = await stat(filePath);
     // if request a file
     if (stats.isFile()) {
-      res.statusCode = 200;
       let ct = getct(filePath).type;
       res.setHeader('Content-Type', ct);
-      let rs = fs.createReadStream(filePath);
-      if(filePath.match(conf.compress)){
+      let rs;
+      let {code, start, end} = getRange(stats.size, req, res);
+      if (code === 200) {
+        res.statusCode = 200;
+        rs = fs.createReadStream(filePath);
+      } else {
+        res.statusCode = 216;
+        rs = fs.createReadStream(filePath, {start, end});
+      }
+      if (filePath.match(conf.compress)) {
         rs = compress(rs, req, res);
       }
       rs.pipe(res);
