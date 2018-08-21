@@ -1,6 +1,6 @@
 {
-  "name": "webserver-node-jade",
-  "version": "1.0.0",
+  "name": "webserver-noja",
+  "version": "1.0.1",
   "description": "a simple and tiny static web server based on node.js and jade",
   "main": "src/app.js",
   "bin": {
