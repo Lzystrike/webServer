@@ -9,6 +9,7 @@ const conf = require('../config/defaultConfig');
 const getct = require('./mime');
 const compress = require('./compress');
 const getRange = require('./range');
+const isCache = require('./cache');
 
 module.exports = async function (req, res, filePath) {
   // console.info(`filePath:       ${filePath}`);
@@ -18,6 +19,11 @@ module.exports = async function (req, res, filePath) {
     if (stats.isFile()) {
       let ct = getct(filePath).type;
       res.setHeader('Content-Type', ct);
+      if(isCache(stats, req, res)){ // 判断是否使用缓存
+        res.statusCode = 304;
+        res.end();
+        return;
+      }
       let rs;
       let {code, start, end} = getRange(stats.size, req, res);
       if (code === 200) {
