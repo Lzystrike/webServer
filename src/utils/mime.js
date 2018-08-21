@@ -122,7 +122,10 @@ const mimeTypes = {
   'hts':'text/html' ,
   'htt':'text/webviewhtml' ,
   'ice':'x-conference/x-cooltalk' ,
-  'ico':'image/x-icon' ,
+  'ico': {
+    type: 'image/x-icon',
+    icon: path.resolve(__dirname, '../assets/imgs/image.png')
+  } ,
   'ief':'image/ief' ,
   'ifm':'image/gif' ,
   'ifs':'image/ifs' ,

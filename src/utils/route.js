@@ -5,13 +5,12 @@ const readdir = promisify(fs.readdir);
 const jade = require('jade');
 const path = require('path');
 const tplPath = path.join(__dirname, '../templates/index.jade');
-const conf = require('../config/defaultConfig');
 const getct = require('./mime');
 const compress = require('./compress');
 const getRange = require('./range');
 const isCache = require('./cache');
 
-module.exports = async function (req, res, filePath) {
+module.exports = async function (req, res, filePath, conf) {
   // console.info(`filePath:       ${filePath}`);
   try {
     const stats = await stat(filePath);

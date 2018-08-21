@@ -2,7 +2,10 @@
   "name": "webserver",
   "version": "1.0.0",
   "description": "a simple and tiny static web server based on node.js and jade",
-  "main": "build/index.js",
+  "main": "src/app.js",
+  "bin": {
+    "webServer": "./bin/webServer"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint .",
@@ -35,6 +38,7 @@
   },
   "dependencies": {
     "chalk": "^2.4.1",
-    "jade": "^1.11.0"
+    "jade": "^1.11.0",
+    "yargs": "^12.0.1"
   }
 }
