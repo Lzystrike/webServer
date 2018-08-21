@@ -17,7 +17,7 @@ module.exports = async function (req, res, filePath, conf) {
     // if request a file
     if (stats.isFile()) {
       let ct = getct(filePath).type;
-      res.setHeader('Content-Type', ct);
+      res.setHeader('Content-Type', ct || 'text/plain');
       if(isCache(stats, req, res)){ // 判断是否使用缓存
         res.statusCode = 304;
         res.end();
